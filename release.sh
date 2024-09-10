@@ -22,7 +22,9 @@ os="windows linux"
 arch="amd64 arm arm64"
 pushd cmd/ck-client
 CGO_ENABLED=1 gox -ldflags "-X main.version=${v}" -os="$os" -arch="$arch" -osarch="$osarch" -output="$output"
-strip ck-client-*
+strip ck-client-linux-amd64*
+aarch64-linux-gnu-strip ck-client-linux-arm64*
+arm-linux-gnueabihf-strip ck-client-linux-arm-*
 mv ck-client-* ../../release
 popd
 
@@ -30,7 +32,9 @@ os="linux"
 arch="amd64 arm arm64"
 pushd cmd/ck-server
 CGO_ENABLED=1 gox -ldflags "-X main.version=${v}" -os="$os" -arch="$arch" -osarch="$osarch" -output="$output"
-strip ck-server-*
+strip ck-server-linux-amd64*
+aarch64-linux-gnu-strip ck-server-linux-arm64*
+arm-linux-gnueabihf-strip ck-server-linux-arm-*
 mv ck-server-* ../../release
 popd
 

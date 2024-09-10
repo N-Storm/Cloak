@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install tools
+        run: |
+          apt update
+          apt install -y binutils-arm-linux-gnueabihf binutils-aarch64-linux-gnu
       - name: Build
         run: |
           export PATH=${PATH}:`go env GOPATH`/bin
