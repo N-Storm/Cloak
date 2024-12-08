@@ -7,11 +7,11 @@ jobs:
       matrix:
         os: [ ubuntu-latest, macos-latest, windows-latest ]
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
         with:
           go-version: '^1.23.1' # The Go version to download (if necessary) and use.
       - run: go test -race -coverprofile coverage.txt -coverpkg ./... -covermode atomic ./...
-      - uses: codecov/codecov-action@v1
+      - uses: codecov/codecov-action@v4
         with:
-          file: coverage.txt
+          files: coverage.txt
